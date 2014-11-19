@@ -1,6 +1,6 @@
 {
-  "name": "my",
-  "version": "0.0.0",
+  "name": "nodejs_demo",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -13,7 +13,7 @@
     "ejs": "0.8.x"
   },
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-uncss": "^0.3.7"
+    "grunt": "0.4.x",
+    "grunt-uncss": "0.3.x"
   }
 }

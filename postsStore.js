@@ -1,6 +1,9 @@
+
+// in-memory cache to store blog posts
 var posts = [];
 
 module.exports = {
+
   add: function(title, author, content) {
     var id = post.length + 1;
     var post = {
@@ -12,10 +15,12 @@ module.exports = {
     posts.push(post);
     return id;
   },
+
   get: function(optId) {
-    if(optId) {
+    if (optId) {
       return posts[optId];
     }
     return posts;
   }
+
 };
