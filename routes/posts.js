@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var postsStore = require('../postsStore');
+
 /*
 
 REST API - CRUDS
@@ -13,42 +15,60 @@ SEARCH  HTTP  GET     /
 
 */
 
-// Optionally validate params
-// router.param('id', /^\d+$/);
-
-
 // CREATE
 router.post('/', function(req, res) {
 
-  res.send('need to return JSON with an ID');
+  var id = postsStore.add(req.body);
+  res.json({
+    id: id
+  });
 
 });
 
 // READ
 router.get('/:id', function(req, res) {
 
-  res.send('need to return JSON with a single post');
+  var post = postsStore.get(req.params.id);
+  if (post) {
+    res.json(post);
+  } else {
+    res.sendStatus(404);
+  }
 
 });
 
 // UPDATE
 router.put('/:id', function(req, res) {
 
-  res.send('need to return 204 once updated');
+  var id = req.params.id;
+  var post = req.body;
+  var success = postsStore.update(id, post);
+  if (success) {
+    res.sendStatus(204);
+  } else {
+    res.sendStatus(404);
+  }
 
 });
 
 // DELETE
 router.delete('/:id', function(req, res) {
 
-  res.send('need to return 204 once deleted');
+  var id = req.params.id;
+  var success = postsStore.del(id);
+  if (success) {
+    res.sendStatus(204);
+  } else {
+    res.sendStatus(404);
+  }
 
 });
 
 // SEARCH
 router.get('/', function(req, res) {
 
-  res.send('need to return JSON with a list of posts');
+  var posts = postsStore.get();
+  res.json(posts);
 
 });
 
